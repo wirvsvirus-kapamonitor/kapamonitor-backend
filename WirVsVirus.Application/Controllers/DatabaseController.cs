@@ -25,6 +25,7 @@ namespace WirVsVirus.Application.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            await _context.Database.EnsureCreatedAsync();
             return Ok(_context.Database.CanConnect());
         }
 

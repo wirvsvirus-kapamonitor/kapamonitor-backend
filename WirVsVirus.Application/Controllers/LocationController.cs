@@ -31,6 +31,7 @@ namespace WirVsVirus.Application.Controllers
                 .Include(l => l.Gym)
                 .Include(l => l.Hotel)
                 .Include(l => l.Hospital)
+                .Take(200)
                 .Select(l => new LocationJsonModel(l)).ToListAsync();
         }
 
