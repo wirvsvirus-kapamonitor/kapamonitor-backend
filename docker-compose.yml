@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  wirvsvirus.application:
+    image: ${DOCKER_REGISTRY-}wirvsvirusapplication
+    container_name: api
+    build:
+      context: .
+      dockerfile: WirVsVirus.Application/Dockerfile
+    depends_on: 
+      - db-server
+
+  db-server:
+    image: microsoft/mssql-server-linux
+    container_name: db-server
+    environment: 
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Chris123456
+      - MSSQL_TCP_PORT=1433
+    ports:
+      - "1400:1433"
+    networks: 
+      - localdev

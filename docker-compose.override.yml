@@ -1,0 +1,14 @@
+version: '3.5'
+
+networks: 
+  localdev:
+    name: localdev
+
+services:
+  wirvsvirus.application:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:80"
+    networks: 
+      - localdev
