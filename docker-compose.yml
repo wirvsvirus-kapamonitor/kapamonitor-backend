@@ -1,23 +1,35 @@
 version: '3.5'
 
+networks: 
+  localdev:
+    name: localdev
+    driver: bridge
+
 services:
-  wirvsvirus.application:
-    image: ${DOCKER_REGISTRY-}wirvsvirusapplication
+  kapamonitor.application:
+    image: ${DOCKER_REGISTRY-}kapamonitorapplication
     container_name: api
     build:
       context: .
-      dockerfile: WirVsVirus.Application/Dockerfile
+      dockerfile: KapaMonitor.Application/Dockerfile
     depends_on: 
       - db-server
-
-  db-server:
-    image: mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
-    container_name: db-server
-    environment: 
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=Chris123456
-      - MSSQL_TCP_PORT=1433
-    ports:
-      - "1433"
     networks: 
       - localdev
+
+  db-server:
+    image: postgres:latest
+    container_name: db-server
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    environment: 
+      POSTGRES_USER: "sa"
+      POSTGRES_PASSWORD: "Chris123456"
+      POSTGRES_DB: "KapaMonitor"
+    ports:
+      - "5432"
+    restart: always
+    networks: 
+      - localdev
+volumes:
+  db_volume:
