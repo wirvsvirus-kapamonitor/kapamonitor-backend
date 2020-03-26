@@ -1,0 +1,2 @@
+This repository and all contained files are published under the NPOSL-3.0 license. 
+Fur further Informations: https://opensource.org/licenses/NPOSL-3.0
