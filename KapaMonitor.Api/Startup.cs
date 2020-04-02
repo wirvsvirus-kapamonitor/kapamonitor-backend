@@ -56,15 +56,16 @@ namespace KapaMonitor.Api
             if (_env.IsDevelopment())
             {
                 connection = Configuration.GetConnectionString("DefaultConnection");
-            } else
+            }
+            else
             {
                 connection = Environment.GetEnvironmentVariable("PostgresKapaMonitorConnection") ?? "";
             }
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connection));
 
-            if (_env.IsDevelopment())
+            services.AddCors(options =>
             {
-                services.AddCors(options =>
+                if (_env.IsDevelopment())
                 {
                     options.AddPolicy(MyAllowSpecificOrigins,
                     builder =>
@@ -73,11 +74,19 @@ namespace KapaMonitor.Api
                             .AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
-
-                        builder.AllowAnyMethod();
                     });
-                });
-            }
+                }
+                else
+                {
+                    options.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:5000/api")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+                }
+            });
 
 
             services.AddControllers();

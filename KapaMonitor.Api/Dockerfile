@@ -1,5 +1,3 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
@@ -7,6 +5,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["KapaMonitor.Api/KapaMonitor.Api.csproj", "KapaMonitor.Api/"]
+COPY ["KapaMonitor.Application/KapaMonitor.Application.csproj", "KapaMonitor.Application/"]
 COPY ["KapaMonitor.Database/KapaMonitor.Database.csproj", "KapaMonitor.Database/"]
 COPY ["KapaMonitor.Domain/KapaMonitor.Domain.csproj", "KapaMonitor.Domain/"]
 RUN dotnet restore "KapaMonitor.Api/KapaMonitor.Api.csproj"

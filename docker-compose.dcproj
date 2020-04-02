@@ -3,10 +3,10 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>90bdafbb-9715-40fe-9d64-f1dc0f6e877c</ProjectGuid>
+    <ProjectGuid>3d56766a-4bc9-49f0-9320-60680f6e42ff</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger/index.html</DockerServiceUrl>
-    <DockerServiceName>kapamonitor.application</DockerServiceName>
+    <DockerServiceName>kapamonitor.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
