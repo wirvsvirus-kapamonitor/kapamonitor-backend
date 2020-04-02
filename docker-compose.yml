@@ -6,12 +6,12 @@ networks:
     driver: bridge
 
 services:
-  kapamonitor.application:
-    image: ${DOCKER_REGISTRY-}kapamonitorapplication
+  KapaMonitor.Api:
+    image: ${DOCKER_REGISTRY-}kapamonitorapi
     container_name: api
     build:
       context: .
-      dockerfile: KapaMonitor.Application/Dockerfile
+      dockerfile: KapaMonitor.Api/Dockerfile
     depends_on: 
       - db-server
     networks: 

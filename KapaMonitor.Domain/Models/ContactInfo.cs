@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
 
 namespace KapaMonitor.Domain.Models
 {
@@ -13,8 +10,10 @@ namespace KapaMonitor.Domain.Models
         public string Email { get; set; }
         public string Phone { get; set; }
 
+        // Nullable for demo users
+        public string FbUserId { get; set; }
 
-        [JsonIgnore]
+
         public IEnumerable<Location> Location { get; set; }
     }
 }

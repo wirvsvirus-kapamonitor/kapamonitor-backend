@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace KapaMonitor.Domain.Models
 {
@@ -16,8 +12,7 @@ namespace KapaMonitor.Domain.Models
         public int Floor { get; set; }
         public bool BarrierFree { get; set; }
 
-        public int LocationId { get; set; }
-        [JsonIgnore]
+        [Required]
         public Location Location { get; set; }
     }
 }

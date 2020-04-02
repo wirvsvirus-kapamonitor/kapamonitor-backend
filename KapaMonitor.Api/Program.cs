@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace KapaMonitor.Application
+namespace KapaMonitor.Api
 {
     public class Program
     {

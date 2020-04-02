@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "KapaMonitor.Application": {
+    "KapaMonitor.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "/swagger/index.html",

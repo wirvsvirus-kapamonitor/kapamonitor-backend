@@ -338,3 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/KapaMonitor.Api/aws-ecs-tools-defaults.json

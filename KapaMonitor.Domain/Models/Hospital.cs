@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using KapaMonitor.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Json.Serialization;
 
 namespace KapaMonitor.Domain.Models
 {
     public class Hospital
     {
+        // --- Database entity ---
         public int Id { get; set; }
         public string IkId { get; set; }
         public bool IsEmergencyHospital { get; set; }
@@ -16,8 +14,11 @@ namespace KapaMonitor.Domain.Models
         public bool BarrierFree { get; set; }
         public string Url { get; set; }
 
-        public int LocationId { get; set; }
-        [JsonIgnore]
+        [Required]
         public Location Location { get; set; }
+
+
+        // --- Methods ---
+        public LocationType LocationType => LocationType.Hospital;
     }
 }

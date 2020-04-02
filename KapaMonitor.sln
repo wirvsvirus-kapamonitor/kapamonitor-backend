@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KapaMonitor.Application", "KapaMonitor.Application\KapaMonitor.Application.csproj", "{BCFD36E4-75A3-417F-89BD-561B17BCB8DD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KapaMonitor.Database", "KapaMonitor.Database\KapaMonitor.Database.csproj", "{2C4ECF95-FE37-443B-8D15-DF635BDE5A53}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KapaMonitor.Domain", "KapaMonitor.Domain\KapaMonitor.Domain.csproj", "{77B8B334-F1AF-47B7-AE07-E3289CD4C10D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{90BDAFBB-9715-40FE-9D64-F1DC0F6E877C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KapaMonitor.Api", "KapaMonitor.Api\KapaMonitor.Api.csproj", "{CC66DC64-BC2B-4C8E-9366-135EC9B97BB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KapaMonitor.Application", "KapaMonitor.Application\KapaMonitor.Application.csproj", "{31492F9D-3DD4-40F6-9DD2-C6A858DBC27E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BCFD36E4-75A3-417F-89BD-561B17BCB8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCFD36E4-75A3-417F-89BD-561B17BCB8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCFD36E4-75A3-417F-89BD-561B17BCB8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCFD36E4-75A3-417F-89BD-561B17BCB8DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C4ECF95-FE37-443B-8D15-DF635BDE5A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C4ECF95-FE37-443B-8D15-DF635BDE5A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C4ECF95-FE37-443B-8D15-DF635BDE5A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{90BDAFBB-9715-40FE-9D64-F1DC0F6E877C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90BDAFBB-9715-40FE-9D64-F1DC0F6E877C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90BDAFBB-9715-40FE-9D64-F1DC0F6E877C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC66DC64-BC2B-4C8E-9366-135EC9B97BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC66DC64-BC2B-4C8E-9366-135EC9B97BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC66DC64-BC2B-4C8E-9366-135EC9B97BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC66DC64-BC2B-4C8E-9366-135EC9B97BB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31492F9D-3DD4-40F6-9DD2-C6A858DBC27E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31492F9D-3DD4-40F6-9DD2-C6A858DBC27E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31492F9D-3DD4-40F6-9DD2-C6A858DBC27E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31492F9D-3DD4-40F6-9DD2-C6A858DBC27E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using KapaMonitor.Domain.Models;
 
-namespace KapaMonitor.Domain.Models
+namespace KapaMonitor.Application.Locations
 {
-    public class LocationJsonModel
+    public class LocationViewModel
     {
-        public LocationJsonModel(Location location)
+        public LocationViewModel(Location location)
         {
             Id = location.Id;
             Title = location.Title;
@@ -23,11 +19,11 @@ namespace KapaMonitor.Domain.Models
             AccessToInternet = location.AccessToInternet;
             Url = location.Url;
 
-            SanitaryInfo = location.SanitaryInfo;
-            Gym = location.Gym;
-            Hotel = location.Hotel;
-            Hospital = location.Hospital;
-            
+            ContactInfoId = location.ContactInfoId;
+            SanitaryInfoId = location.SanitaryInfoId;
+            GymId = location.GymId;
+            HotelId = location.HotelId;
+            HospitalId = location.HospitalId;
         }
 
         public int Id { get; set; }
@@ -43,24 +39,25 @@ namespace KapaMonitor.Domain.Models
         public bool AccessToInternet { get; set; }
         public string Url { get; set; }
 
-        public ContactInfo ContactInfo { get; set; }
-        public SanitaryInfo SanitaryInfo { get; set; }
-        public Gym Gym { get; set; }
-        public Hotel Hotel { get; set; }
-        public Hospital Hospital { get; set; }
+        public int? ContactInfoId { get; set; }
 
-        public string Type {
+        public int? GymId { get; set; }
+        public int? HotelId { get; set; }
+        public int? HospitalId { get; set; }
+
+        public int? SanitaryInfoId { get; set; }
+
+        public Domain.Enums.LocationType LocationType
+        {
             get {
-                if (SanitaryInfo != null)
-                    return nameof(SanitaryInfo);
-                else if (Gym != null)
-                    return nameof(Gym);
-                else if (Hotel != null)
-                    return (nameof(Hotel));
-                else if (Hospital != null)
-                    return (nameof(Hospital));
+                if (GymId > 0)
+                    return Domain.Enums.LocationType.Gym;
+                else if (HotelId > 0)
+                    return Domain.Enums.LocationType.Hotel;
+                else if (HospitalId > 0)
+                    return Domain.Enums.LocationType.Hospital;
 
-                return "unknown";
+                return 0;
             }
         }
     }

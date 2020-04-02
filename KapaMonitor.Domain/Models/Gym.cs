@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using KapaMonitor.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace KapaMonitor.Domain.Models
 {
     public class Gym
     {
+        // --- Database entity ---
         public int Id { get; set; }
         public double Area { get; set; }
         public int Beds { get; set; }
@@ -15,7 +14,11 @@ namespace KapaMonitor.Domain.Models
         public int QuantityWaterConnections { get; set; }
         public bool BarrierFree { get; set; }
 
-        public int LocationId { get; set; }
+        [Required]
         public Location Location { get; set; }
+
+
+        // --- Methods ---
+        public LocationType LocationType => LocationType.Gym;
     }
 }
