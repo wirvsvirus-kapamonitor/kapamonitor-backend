@@ -73,7 +73,7 @@ namespace KapaMonitor.Api
                     options.AddPolicy(CorsPolicy,
                     builder =>
                     {
-                        builder.WithOrigins("http://ec2-3-121-86-158.eu-central-1.compute.amazonaws.com/")
+                        builder.WithOrigins("http://ec2-3-121-86-158.eu-central-1.compute.amazonaws.com")
                            .AllowAnyMethod()
                            .AllowAnyHeader();
                     });
