@@ -18,8 +18,7 @@ namespace KapaMonitor.Api
 {
     public class Startup
     {
-
-        readonly string MyAllowSpecificOrigins = "corsAllowAll";
+        private readonly string CorsPolicy = "corspolicy";
 
         private readonly IWebHostEnvironment _env;
         public IConfiguration Configuration { get; }
@@ -35,7 +34,7 @@ namespace KapaMonitor.Api
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    string firebaseProject = "fir-49fb4";
+                    string firebaseProject = _env.IsDevelopment() ? "fir-49fb4" : "kapamonitor-4208b";
                     options.Authority = $"https://securetoken.google.com/{firebaseProject}";
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -52,38 +51,31 @@ namespace KapaMonitor.Api
                     }
                 });
 
-            string connection;
-            if (_env.IsDevelopment())
-            {
-                connection = Configuration.GetConnectionString("DefaultConnection");
-            }
-            else
-            {
-                connection = Environment.GetEnvironmentVariable("PostgresKapaMonitorConnection") ?? "";
-            }
+            string connection = _env.IsDevelopment() ? Configuration.GetConnectionString("DefaultConnection") 
+                                                     : (Environment.GetEnvironmentVariable("PostgresKapaMonitorConnection") ?? "");
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connection));
 
             services.AddCors(options =>
             {
                 if (_env.IsDevelopment())
                 {
-                    options.AddPolicy(MyAllowSpecificOrigins,
+                    options.AddPolicy(CorsPolicy,
                     builder =>
                     {
                         builder.WithOrigins()
                             .AllowAnyOrigin()
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
                     });
-                }
+                } 
                 else
                 {
-                    options.AddPolicy(MyAllowSpecificOrigins,
+                    options.AddPolicy(CorsPolicy,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:5000/api")
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
+                        builder.WithOrigins("http://ec2-3-121-86-158.eu-central-1.compute.amazonaws.com/")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
                     });
                 }
             });
@@ -129,14 +121,9 @@ namespace KapaMonitor.Api
         public void Configure(IApplicationBuilder app, ApplicationDbContext context)
         {
             if (_env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-                app.UseCors(MyAllowSpecificOrigins);
-            }
             else
-            {
                 app.UseHttpsRedirection();
-            }
 
             // migrate any database changes on startup
             context.Database.Migrate();
@@ -146,10 +133,12 @@ namespace KapaMonitor.Api
             app.UseSwaggerUI(c =>
             {
                 c.DocumentTitle = "WebApi Explorer";
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "KapaMonitor API V1");
             });
 
             app.UseRouting();
+
+            app.UseCors(CorsPolicy);
 
             app.UseAuthentication();
             app.UseAuthorization();
