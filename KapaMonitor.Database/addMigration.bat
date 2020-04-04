@@ -1,0 +1,1 @@
+dotnet ef --startup-project ../KapaMonitor.Api migrations add %1
