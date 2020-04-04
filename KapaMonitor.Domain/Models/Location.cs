@@ -42,11 +42,11 @@ namespace KapaMonitor.Domain.Models
         {
             get
             {
-                if (Gym != null)
+                if (GymId > 0)
                     return LocationType.Gym;
-                else if (Hotel != null)
+                else if (HotelId > 0)
                     return LocationType.Hotel;
-                else if (Hospital != null)
+                else if (HospitalId > 0)
                     return LocationType.Hospital;
                 else
                     throw new NullReferenceException();

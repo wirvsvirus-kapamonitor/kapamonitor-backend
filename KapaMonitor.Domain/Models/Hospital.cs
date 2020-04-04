@@ -12,9 +12,8 @@ namespace KapaMonitor.Domain.Models
         public int BedsWithVentilator { get; set; }
         public int BedsWithoutVentilator { get; set; }
         public bool BarrierFree { get; set; }
-        public string Url { get; set; }
 
-        [Required]
+        public int LocationId { get; set; }
         public Location Location { get; set; }
 
 
