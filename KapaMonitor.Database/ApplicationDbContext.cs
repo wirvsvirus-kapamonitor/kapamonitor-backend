@@ -17,7 +17,15 @@ namespace KapaMonitor.Database
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         
-        
         public DbSet<ErrorLog> ErrorLogs { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Location>()
+                .HasOne(l => l.Hospital)
+                .WithOne(h => h.Location)
+                .HasForeignKey<Hospital>(h => h.LocationId);
+        }
     }
 }
