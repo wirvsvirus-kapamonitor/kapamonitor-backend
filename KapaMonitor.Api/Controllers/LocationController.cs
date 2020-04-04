@@ -66,6 +66,7 @@ namespace KapaMonitor.Api.Controllers
         /// <returns>The the newly created Location</returns>
         /// <response code="200">Returns the newly created Location</response>
         /// <response code="401">If the user is not logged in</response>
+        /// <response code="404">If the ContactInfo with the spezified id doesn't exist</response>
         /// <response code="500">If the database operation failed unexpectedly</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LocationViewModel))]
@@ -75,6 +76,9 @@ namespace KapaMonitor.Api.Controllers
 
             if (dbOpFailed)
                 return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.DatabaseOperationFailed);
+
+            if (vm == null)
+                return BadRequest();
 
             return Ok(vm);
         }

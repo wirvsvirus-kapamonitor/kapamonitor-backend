@@ -16,24 +16,24 @@ namespace KapaMonitor.Application.Locations
             _context = context;
         }
 
-        public async Task<(bool DbOpFailed, LocationViewModel? ViewModel)> Do(UpdateLocationRequest vm)
+        public async Task<(bool DbOpFailed, LocationViewModel? ViewModel)> Do(UpdateLocationRequest request)
         {
-            var location = await _context.Locations.FirstOrDefaultAsync(c => c.Id == vm.Id);
+            var location = await _context.Locations.FirstOrDefaultAsync(c => c.Id == request.Id);
 
             if (location == null)
                 return (false, null);
 
-            location.Title = vm.Title;
-            location.State = vm.State;
-            location.City = vm.City;
-            location.PostCode = vm.PostCode;
-            location.Street = vm.Street;
-            location.HouseNumber = vm.HouseNumber;
-            location.GeoLatitude = vm.GeoLatitude;
-            location.GeoLongitude = vm.GeoLongitude;
-            location.Accessability = vm.Accessability;
-            location.AccessToInternet = vm.AccessToInternet;
-            location.Url = vm.Url;
+            location.Title = request.Title;
+            location.State = request.State;
+            location.City = request.City;
+            location.PostCode = request.PostCode;
+            location.Street = request.Street;
+            location.HouseNumber = request.HouseNumber;
+            location.GeoLatitude = request.GeoLatitude;
+            location.GeoLongitude = request.GeoLongitude;
+            location.Accessability = request.Accessability;
+            location.AccessToInternet = request.AccessToInternet;
+            location.Url = request.Url;
 
             try
             {
@@ -41,7 +41,7 @@ namespace KapaMonitor.Application.Locations
             }
             catch (Exception ex)
             {
-                await new ErrorLogging(_context).LogError(ErrorMessages.UpdateLocation, ex, vm);
+                await new ErrorLogging(_context).LogError(ErrorMessages.UpdateLocation, ex, request);
                 return (true, null);
             }
 

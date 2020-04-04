@@ -2,6 +2,7 @@
 using KapaMonitor.Database;
 using KapaMonitor.Domain.Internal;
 using KapaMonitor.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
@@ -18,6 +19,11 @@ namespace KapaMonitor.Application.Locations
 
         public async Task<(bool DbOpFailed, LocationViewModel? ViewModel)> Do(CreateLocationRequest request)
         {
+            ContactInfo contactInfo = await _context.ContactInfos.FirstOrDefaultAsync(c => c.Id == request.ContactInfoId);
+
+            if (contactInfo == null)
+                return (false, null);
+
             Location location = new Location
             {
                 Title = request.Title,
