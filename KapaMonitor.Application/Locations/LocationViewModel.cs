@@ -27,17 +27,17 @@ namespace KapaMonitor.Application.Locations
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
-        public string PostCode { get; set; }
-        public string Street { get; set; }
-        public string HouseNumber { get; set; }
-        public string GeoLatitude { get; set; }
-        public string GeoLongitude { get; set; }
-        public string Accessability { get; set; }
+        public string? Title { get; set; }
+        public string? State { get; set; }
+        public string? City { get; set; }
+        public string? PostCode { get; set; }
+        public string? Street { get; set; }
+        public string? HouseNumber { get; set; }
+        public string? GeoLatitude { get; set; }
+        public string? GeoLongitude { get; set; }
+        public string? Accessability { get; set; }
         public bool AccessToInternet { get; set; }
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
         public int? ContactInfoId { get; set; }
 

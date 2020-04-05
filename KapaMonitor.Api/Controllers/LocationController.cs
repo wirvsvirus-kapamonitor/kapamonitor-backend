@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using KapaMonitor.Domain.Internal;
 using static KapaMonitor.Application.Locations.CreateLocation;
 using static KapaMonitor.Application.Locations.UpdateLocation;
+using System.Linq;
 
 namespace KapaMonitor.Api.Controllers
 {
@@ -35,6 +36,9 @@ namespace KapaMonitor.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var vms = await new GetLocations(_context).Do();
+
+            vms = vms.Where(l => !string.IsNullOrEmpty(l.Title) && !string.IsNullOrEmpty(l.Street)).Take(700).ToList();
+
             return Ok(vms);
         }
 
